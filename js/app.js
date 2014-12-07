@@ -2,16 +2,12 @@
 
 console.log(angular.version.full);
 
-var app = angular.module('initiativeCalculatorApp', []);
+var app = angular.module('initiativeCalculatorApp', ['firebase']);
 
 // Services
 // -----------------------------------------------------------------------------
 app.service('characterService', function() {
-  var characters = [{
-    "name": "Test Character",
-    "initiativeMod": 3,
-    "initiativeModDisplay": '+3'
-  }]; 
+  var characters = []; 
 
   return {
     getCharacters: function() {
@@ -33,9 +29,23 @@ app.service('characterService', function() {
 
 // Controllers
 // ----------------------------------------------------------------------------
-app.controller('MainController', ['$scope', 'characterService', function ($scope, characterService) {
+app.controller('MainController', ['$scope', '$firebase', 'characterService', function ($scope, $firebase, characterService) {
 
+  var ref = new Firebase("https://sizzling-inferno-2521.firebaseio.com/");
+  var sync = $firebase(ref);
+  $scope.players = sync.$asObject();
+  $scope.players.$loaded().then(function() {
+    console.log($scope.players);
+    angular.forEach($scope.players, function(value, key) {
+      if( !angular.isFunction(value)) {
+        characterService.updateCharacters(value);
+      }
+    });
+  });
+
+  
   $scope.characters = characterService.getCharacters();
+
 
   // Add a character to the Character's list.
   $scope.addCharacter = function() {
