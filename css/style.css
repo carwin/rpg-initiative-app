@@ -1,0 +1,72 @@
+html, body {height: 100%; margin: 0; padding; 0;}
+body {
+  font-family: 'Source Sans Pro';
+  line-height: 1.5em;
+}
+
+/* Standard elements */
+ul, li {margin: 0; padding: 0; list-style: none;}
+table {width: 100%;}
+thead {font-size: 24px;}
+
+main {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
+  height: 100%;
+}
+
+.initiative__character-management {
+  flex: .5 0 0;
+  margin-right: 15px;
+  height: 100%;
+  background: #555;
+}
+
+.initiative__form {
+  background: #dfdfdf;
+  padding: 10px;
+}
+
+.initiative__char-list {
+}
+
+.initiative__battle-data {
+  flex: 2 0 0;
+}
+
+.initiative__battle-data .button {
+  position: absolute;
+  left: 105px;
+  top: 103px;
+}
+
+/* Character Component */
+.character {
+  position: relative;
+  background-color: #ffffff;
+  padding: 15px;
+}
+.character:nth-child(2n) {
+  background-color: #cecece;
+}
+.character__name,
+.character__initiative-mod {
+  display: block;
+}
+.character__name {
+  font-weight: bold;
+}
+.character__initiative-mod {
+  
+}
+.character__remove {
+  font-size: 11px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
