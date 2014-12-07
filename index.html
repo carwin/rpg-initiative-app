@@ -1,10 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="initiativeCalculatorApp">
 <head>
   <meta charset="UTF-8">
-  <title></title>
+  <title>Initiative Calculator</title>
+  <script src="/bower_components/angularjs/angular.min.js"></script>
+  <script src="/js/app.js"></script>
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  Pathfinder stuff in here.
+
+  <main>
+    <div ng-controller="MainController" class="initiative__character-management">
+
+      <table class="initiative__form">
+        <thead>
+          <tr>
+            <td colspan="2">Add a character</td>
+          </tr>
+        </thead>
+        <tr>
+          <td><label>Name:</label></td>
+          <td><input type="text" ng-model="newCharacter"></td>
+        </tr>
+        <tr>
+          <td><label>Initiative Modifier:</label></td>
+          <td><input type="text" ng-model="newCharacterModifier"></td>
+        </tr>
+        <tr>
+          <td colspan="2"><button class="button" ng-click="addCharacter(); showInits=false">Add character</button></td>
+        </tr>
+      </table>
+
+      <ul class="initiative__character-list">
+        <li ng-repeat="character in characters" class="character">
+          <span class="character__name">{{character.name}}</span>
+          <span class="character__initiative-mod">Initiative modifier: {{character.initiativeModDisplay}}</span>
+          <span class="character__remove" ng-click="removeCharacter($index)">remove</span>
+        </li>
+      </ul>
+
+    </div>
+
+    <div ng-controller="InitiativeController" class="initiative__battle-data">
+      <h1>Initiative</h1>
+      <button class="button" ng-click="rollInitiative(); showInits=true">Roll Initiative</button>
+      <ul>
+        <li ng-repeat="character in characters" ng-show="showInits">
+          <strong>{{characters[$index].name}}: </strong> {{characters[$index].currentInitiative}}<br>
+        </li>
+      </ul>
+    </div>
+
+  </main>
+
 </body>
 </html>

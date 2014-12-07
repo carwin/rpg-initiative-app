@@ -1,0 +1,20 @@
+{
+  "name": "pathfinder-utils",
+  "version": "0.0.0",
+  "homepage": "https://github.com/carwin/rpg-initiative-app",
+  "authors": [
+    "Carwin Young <carwinyoung@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angularfire": "~0.9.0"
+  }
+}
